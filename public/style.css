@@ -1,0 +1,142 @@
+:root {
+  --background: #120D04;
+  --foreground: #F9F3E3;
+  --primary: #F5C518;
+  --primary-hover: #E0B010;
+  --secondary: #1C1408;
+  --border: #3D2E18;
+  --font-sans: 'Segoe UI', Tahoma, Arial, sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+/* خلفية الشبكة الاحترافية Grid Lines */
+.grid-lines-bg {
+  background-image: 
+    linear-gradient(to right, rgba(61, 46, 24, 0.2) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(61, 46, 24, 0.2) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #F5C518 0%, #E8A830 50%, #C8965A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.loyalty-gradient {
+  background: linear-gradient(145deg, #1C1408 0%, #291D0C 100%);
+  border: 1px solid var(--border);
+}
+
+.card-custom {
+  background-color: var(--secondary);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card-custom:hover {
+  border-color: var(--primary);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(245, 197, 24, 0.15);
+}
+
+.btn-primary-gold {
+  background-color: var(--primary);
+  color: #120D04;
+  font-weight: bold;
+  border-radius: 50rem;
+  border: none;
+  transition: all 0.2s;
+}
+
+.btn-primary-gold:hover {
+  background-color: var(--primary-hover);
+  transform: scale(1.02);
+}
+
+.btn-outline-gold {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  background: transparent;
+  font-weight: bold;
+  border-radius: 50rem;
+  transition: all 0.2s;
+}
+
+.btn-outline-gold:hover {
+  background-color: var(--primary);
+  color: #120D04;
+}
+
+.menu-img {
+  height: 220px;
+  object-fit: fill;
+  width: 100%;
+}
+/* لون الخلفية الداكن المطابق للصورة */
+.alsaro-hero-section {
+    background-color: #16120c;
+    min-height: 100vh;
+    font-family: 'Cairo', sans-serif; /* أو الخط المفضل لديكِ */
+}
+
+/* بطاقات المعلومات المحددة بإطار خفيف */
+.info-card {
+    background-color: #1f1911;
+    border: 1px solid #33291d;
+    color: #fff;
+    transition: 0.3s ease;
+}
+
+.info-card:hover {
+    border-color: #d4a373;
+}
+
+/* ألوان الأزرار المطابقة */
+.custom-btn-outline {
+    background-color: #1f1911;
+    border: 1px solid #d4a373;
+    color: #d4a373;
+}
+.custom-btn-outline:hover {
+    background-color: #d4a373;
+    color: #16120c;
+}
+
+.custom-btn-whatsapp {
+    background-color: #2ecc71;
+    border: none;
+    color: #fff !important;
+}
+.custom-btn-whatsapp:hover {
+    background-color: #27ae60;
+}
+
+.custom-btn-maps {
+    background-color: #f1c40f;
+    border: none;
+    color: #16120c !important;
+}
+.custom-btn-maps:hover {
+    background-color: #f39c12;
+}
+
+/* تأثير الدوائر حول الموقع في المنتصف */
+.radar-circle {
+    padding: 40px;
+    background: radial-gradient(circle, rgba(212, 163, 115, 0.08) 0%, rgba(22, 18, 12, 0) 70%);
+    border: 1px dashed #33291d;
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+}

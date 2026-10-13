@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ذرة السرو — Al-Saro Corn</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="grid-lines-bg">
+
+    <!-- Header & Navigation -->
+    <nav class="navbar navbar-dark fixed-top px-4 py-3" style="background: rgba(18, 13, 4, 0.85); backdrop-filter: blur(10px);">
+        <div class="container-fluid">
+            <!-- Hamburger Menu Button -->
+            <button class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuDrawer" style="width: 45px; height: 45px; border-color: #3D2E18;">
+                <i class="fas fa-bars text-warning"></i>
+            </button>
+
+            <!-- Brand Logo & Name -->
+            <div class="d-flex align-items-center gap-2">
+                <div class="text-end">
+                    <span class="d-block fw-bold text-warning font-arabic fs-5">ذرة السرو</span>
+                    <span class="d-block text-muted" style="font-size: 0.7rem; letter-spacing: 1px;">AL-SARO CORN</span>
+                </div>
+                <div class="rounded-circle bg-warning d-flex align-items-center justify-content-center fw-bold fs-5 text-dark shadow" style="width: 45px; height: 45px;">
+                    🌽
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="text-center text-white d-flex align-items-center justify-content-center position-relative overflow-hidden" style="min-height: 100vh;">
+        <div class="container px-3 position-relative z-1 pt-5">
+            <div class="mb-4">
+                <span class="badge bg-warning text-dark px-4 py-2 rounded-pill fw-bold shadow-lg fs-6" style="background-color: #F5C518 !important;">
+                    📍 أربد، بني كنانة — بجانب ملعب القلعة
+                </span>
+            </div>
+            <h1 class="display-3 fw-bold mb-4 text-gradient-gold">طعم لا يُقاوم<br>بنكهة مميزة!</h1>
+            <p class="lead mb-5 text-light mx-auto font-arabic fs-4" style="max-width: 650px;">
+                ذرة طازجة مع بهاراتنا الخاصة وصوص الجبنة الذائب — تجربة لا تُنسى في كل لقمة.
+            </p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap mb-5">
+                <a href="#menu" class="btn btn-primary-gold px-5 py-3 fs-5 shadow">تصفح المنيو 🌽</a>
+            </div>
+
+            <!-- Footer Features Icons inside Hero -->
+            <div class="row justify-content-center gap-4 mt-4 pt-4 small border-top border-secondary" style="border-color: #3D2E18 !important; max-width: 800px; margin-inline: auto;">
+                <div class="col-auto"><i class="fas fa-bolt text-warning me-1"></i> خدمة سريعة</div>
+                <div class="col-auto"><i class="fas fa-cheese text-warning me-1"></i> جبنة طازجة</div>
+                <div class="col-auto"><i class="fas fa-pepper-hot text-danger me-1"></i> بهارات خاصة</div>
+                <div class="col-auto"><i class="fas fa-trophy text-warning me-1"></i> نقاط مكافآت</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu Section -->
+    <section id="menu" class="container py-5 my-5">
+        <div class="text-center mb-5">
+            <span class="text-warning fw-bold text-uppercase" style="letter-spacing: 2px; font-size: 0.9rem;">الأصناف المميزة</span>
+            <h2 class="fw-bold text-warning mt-2 display-5">قائمة الطعام (المنيو)</h2>
+            <div class="mx-auto mt-3" style="width: 100px; height: 2px; background: #F5C518; opacity: 0.5;"></div>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <!-- Item 1: ذرة عرنوس -->
+            <div class="col-md-4">
+                <div class="card card-custom h-100 text-light p-2">
+                    <img src="images/denar-rrr.png" class="card-img-top menu-img rounded-4" alt="ذرة عرنوس">
+                    <div class="card-body d-flex flex-column justify-content-between p-4">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h3 class="h4 fw-bold text-warning mb-0">ذرة عرنوس</h3>
+                                <span class="badge bg-warning text-dark fs-6 px-3 py-2 rounded-pill fw-bold">1 JOD</span>
+                            </div>
+                            <p class="font-arabic">عرانيس ذرة طازج مشوي على الفحم مع صوص الجبنة الذائب والبهارات الخاصة.</p>
+                        </div>
+                        <button onclick="addToCart('ذرة عرنوس', 1.00)" class="btn btn-outline-gold w-100 mt-4 py-2 fw-bold">
+                            أضف للسلة <i class="fas fa-cart-plus ms-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Item 2: علبة ذرة -->
+            <div class="col-md-4">
+                <div class="card card-custom h-100 text-light p-2">
+                    <img src="images/one-denar.png" class="card-img-top menu-img rounded-4" alt="علبة ذرة">
+                    <div class="card-body d-flex flex-column justify-content-between p-4">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h3 class="h4 fw-bold text-warning mb-0">علبة ذرة</h3>
+                                <span class="badge bg-warning text-dark fs-6 px-3 py-2 rounded-pill fw-bold">1.00 JOD</span>
+                            </div>
+                            <p class="font-arabic">ذرة فرط متبلة ببهاراتنا الخاصة وصوص الجبنة الذائب.</p>
+                        </div>
+                        <button onclick="addToCart('ذرة فرط', 1.00)" class="btn btn-outline-gold w-100 mt-4 py-2 fw-bold">
+                            أضف للسلة <i class="fas fa-cart-plus ms-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Item 3: خلطة السرو -->
+            <div class="col-md-4">
+                <div class="card card-custom h-100 text-light p-2">
+                    <img src="images/denaren.png" class="card-img-top menu-img rounded-4" alt="خلطة السرو">
+                    <div class="card-body d-flex flex-column justify-content-between p-4">
+                        <div>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h3 class="h4 fw-bold text-warning mb-0">خلطة السرو</h3>
+                                <span class="badge bg-warning text-dark fs-6 px-3 py-2 rounded-pill fw-bold">2.00 JOD</span>
+                            </div>
+                            <p class="font-arabic">ذرة فرط مع شيبس على شكل وردة وصوص الجبنة الذائب والبهارات الخاصة.</p>
+                        </div>
+                        <button onclick="addToCart('خلطة السرو', 2.00)" class="btn btn-outline-gold w-100 mt-4 py-2 fw-bold">
+                            أضف للسلة <i class="fas fa-cart-plus ms-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loyalty & Rewards Section
+    <section id="loyalty" class="container py-5 my-5 text-center">
+        <div class="p-5 loyalty-gradient rounded-4 shadow-lg border border-warning">
+            <h2 class="text-warning fw-bold mb-3">برنامج النقاط والولاء 🌟</h2>
+            <p class="lead text-light mb-3 font-arabic">كل 1 دينار تنفقه = 10 نقاط مكتسبة في رصيدك!</p>
+            <p class="text-muted mb-4">50 نقطة = علبة ذرة سوداء مجانية | 80 نقطة = خلطة السرو مجانية</p>
+            <a href="https://wa.me/962791557461?text=مرحباً، أريد الاستفسار عن رصيد نقاطي" target="_blank" class="btn btn-primary-gold px-5 py-3 fw-bold">
+                <i class="fab fa-whatsapp me-2"></i> استعلم عن رصيدك عبر الواتساب
+            </a>
+        </div>
+    </section> -->
+
+    <!-- Testimonials Section -->
+<section id="testimonials" class="container py-5 my-5 text-center">
+    <div class="mb-5">
+        <span class="text-warning fw-bold text-uppercase" style="letter-spacing: 2px; font-size: 0.9rem;">آراء عملائنا</span>
+        <h2 class="fw-bold text-warning mt-2 display-5">ماذا قالوا عن ذرة السرو؟ 🌽</h2>
+        <div class="mx-auto mt-3" style="width: 100px; height: 2px; background: #F5C518; opacity: 0.5;"></div>
+    </div>
+
+    <div class="row g-4 justify-content-center" id="reviews-container">
+        <!-- رأي الزبون 1 -->
+        <div class="col-md-4">
+            <div class="card card-custom h-100 p-4 text-light text-start rounded-4 position-relative">
+                <div class="mb-3 text-warning fs-5">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="font-arabic mb-4" style="line-height: 1.8;">
+                    "أزكى ذرة دقتها بحياتي! صوص الجبنة والبهارات الخاصة اشي خرافي، والأجمل إنها جنب ملعب القلعة دايماً طازجة وسخنة."
+                </p>
+                <div class="d-flex align-items-center mt-auto">
+                    <div class="rounded-circle bg-warning text-dark fw-bold d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                        أ
+                    </div>
+                    <div>
+                        <h6 class="mb-0 fw-bold text-warning">أحمد العمري</h6>
+                        <small>زبون دائم</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add Review Section -->
+<section id="add-review" class="container py-5 my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card card-custom p-4 rounded-4 border-warning shadow-lg text-light">
+                <h3 class="text-warning fw-bold mb-3 text-center">أضف رأيك وتقييمك 🌟</h3>
+                <p class="text-center mb-4 font-arabic">يسعدنا سماع رأيك في منتجات ذرة السرو لتقديم الأفضل دائماً!</p>
+                
+                <form id="review-form" onsubmit="submitReview(event)">
+                    <div class="mb-3">
+                        <label for="reviewer-name" class="form-label font-arabic">اسمك الكريم:</label>
+                        <input type="text" id="reviewer-name" class="form-control bg-light text-light border-secondary p-3 rounded-3" placeholder="مثال: عبود الدقامسة" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="review-rating" class="form-label font-arabic">التقييم:</label>
+                        <select id="review-rating" class="form-select bg-light text-dark border-secondary p-3 rounded-3">
+                            <option value="5">⭐⭐⭐⭐⭐ (ممتاز جداً)</option>
+                            <option value="4">⭐⭐⭐⭐ (رائع)</option>
+                            <option value="3">⭐⭐⭐ (جيد)</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="reviewer-comment" class="form-label font-arabic">رأيك أو تعليقك:</label>
+                        <textarea id="reviewer-comment" rows="3" class="form-control bg-light border-secondary p-3 rounded-3" placeholder="اكتب تجربتك مع ذرة السرو..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-warning w-100 fw-bold py-3 text-dark fs-6 shadow">
+                        إرسال الرأي ونشره <i class="fas fa-paper-plane ms-2"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Location & Info Section (مطابق للتصميم الأصلي تماماً) -->
+    <section id="location" class="alsaro-hero-section py-5 text-light">
+        <div class="container text-center">
+
+            <!-- أيقونة الموقع الكبيرة في المنتصف -->
+            <div class="location-center-box my-5 position-relative">
+                <div class="radar-circle mx-auto position-relative d-flex flex-column align-items-center justify-content-center">
+                    <div class="pin-icon mb-2 text-danger fs-3">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="fw-bold mb-1">بجانب ملعب القلعة</h3>
+                    <p class="mb-0">أربد، بني كنانة</p>
+                </div>
+            </div>
+
+            <!-- مربعات المعلومات (أوقات العمل والموقع) -->
+            <div class="row g-3 mb-5 justify-content-center">
+                <div class="col-md-5">
+                    <div class="info-card p-3 rounded-4 d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-clock text-warning fs-4 me-3"></i>
+                            <div class="text-start">
+                                <span class="d-block fw-bold">أوقات العمل</span>
+                                <small>يومياً من 6:00 — 2:00 م</small>
+                            </div>
+                        </div>
+                        <span class="badge bg-secondary rounded-pill">⏰</span>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="info-card p-3 rounded-4 d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-map-pin text-danger fs-4 me-3"></i>
+                            <div class="text-start">
+                                <span class="d-block fw-bold">الموقع</span>
+                                <small>بجانب ملعب القلعة</small>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-left "></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الأزرار الثلاثة السفلية (إنستغرام، واتساب، جوجل مابس بجانب بعض تماماً مثل التصميم) -->
+            <div class="row g-3 justify-content-center">
+                <!-- زر إنستغرام -->
+                <div class="col-md-3 col-sm-4">
+                    <a href="https://www.instagram.com/al_saro_corn/" target="_blank" class="btn custom-btn-outline w-100 py-3 rounded-pill fw-bold d-flex align-items-center justify-content-center">
+                        <i class="fab fa-instagram me-2 fs-5"></i> إنستغرام
+                    </a>
+                </div>
+                <!-- زر واتساب -->
+                <div class="col-md-3 col-sm-4">
+                    <a href= "tel:+962792553845" target="_blank" class="btn btn-success w-100 py-3 rounded-pill fw-bold d-flex align-items-center justify-content-center text-dark">
+                      <i class="fas fa-phone"> اتصل بنا الآن</i>
+                    </a>
+                </div>
+                <!-- زر جوجل مابس -->
+                <div class="col-md-4 col-sm-4">
+                    <a href="https://www.google.com/maps?q=32.655406690192706,35.80941952531195" target="_blank" class="btn custom-btn-maps w-100 py-3 rounded-pill fw-bold d-flex align-items-center justify-content-center text-dark">
+                        <i class="fas fa-map-marker-alt me-2 text-danger"></i> افتح الموقع على Google Maps
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Floating Cart Button -->
+    <button class="position-fixed bottom-0 end-0 m-4 btn btn-warning rounded-circle shadow-lg d-flex align-items-center justify-content-center fw-bold fs-4" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer" style="width: 65px; height: 65px; z-index: 1000;">
+        <i class="fas fa-shopping-cart text-dark"></i>
+        <span id="cart-badge" class="position-absolute top-0 start-0 badge rounded-pill bg-danger fs-6">0</span>
+    </button>
+
+    
+
+    <!-- Offcanvas Menu Drawer -->
+    <div class="offcanvas offcanvas-start bg-dark text-light" tabindex="-1" id="menuDrawer">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title text-warning fw-bold">قائمة التنقل</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav fs-5 gap-3">
+                <li class="nav-item"><a class="nav-link text-light" href="#menu" data-bs-dismiss="offcanvas">المنيو</a></li>
+                <li class="nav-item"><a class="nav-link text-light" href="#loyalty" data-bs-dismiss="offcanvas">برنامج النقاط</a></li>
+                <li class="nav-item"><a class="nav-link text-light" href="#location" data-bs-dismiss="offcanvas">موقعنا</a></li>
+                <li class="nav-item"><a class="nav-link text-light" href="#testimonials" data-bs-dismiss="offcanvas">آراء الزبائن</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Shopping Cart Drawer -->
+    <div class="offcanvas offcanvas-end bg-dark text-light" tabindex="-1" id="cartDrawer" style="width: 400px;">
+        <div class="offcanvas-header border-bottom border-secondary p-4">
+            <h5 class="offcanvas-title text-warning fw-bold fs-4">سلة الطلبات 🛒</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column justify-content-between p-4">
+            <div>
+                <ul id="cart-items-list" class="list-group list-group-flush bg-transparent mb-3">
+                    <!-- تعبئة العناصر ديناميكياً -->
+                </ul>
+            </div>
+            <div class="border-top border-secondary pt-4">
+                <div class="d-flex justify-content-between mb-3 fs-5 fw-bold">
+                    <span>المجموع الكلي:</span>
+                    <span id="cart-total" class="text-warning">0.00 JOD</span>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label small">رقم الهاتف لتسجيل النقاط:</label>
+                    <input type="text" id="customer-phone" class="form-control bg-secondary text-light border-secondary p-3 rounded-3" placeholder="07XXXXXXXX">
+                </div>
+                <button onclick="checkoutWhatsApp()" class="btn btn-success w-100 fw-bold py-3 fs-6 shadow">
+                    <i class="fab fa-whatsapp me-2 fs-5"></i> إرسال الطلب وتسجيل النقاط
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-4 bg-black border-top border-secondary small">
+        <p class="mb-0">جميع الحقوق محفوظة © 2026 ذرة السرو (Al-Saro Corn)</p>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
