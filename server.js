@@ -12,13 +12,22 @@ app.use(express.json());
 app.use(express.static('public')); // لخدمة ملفات الواجهة الأمامية
 
 // إعداد اتصال قاعدة بيانات PostgreSQL
-const pool = new Pool({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: 5432
-});
+const pool = new Pool(
+    process.env.DATABASE_URL
+        ? {
+              // إعدادات السحابة (Render)
+              connectionString: process.env.DATABASE_URL,
+              ssl: { rejectUnauthorized: false }
+          }
+        : {
+              // إعدادات جهازك المحلي (Localhost)
+              user: process.env.DB_USER || 'postgres',
+              host: process.env.DB_HOST || 'localhost',
+              database: process.env.DB_NAME || 'alsaro_db',
+              password: process.env.DB_PASSWORD || 'كلمة_مرورك_المحلية',
+              port: process.env.DB_PORT || 5432
+          }
+);
 
 // إنشاء جدول reviews تلقائياً إذا لم يكن موجوداً
 async function initReviewsTable() {
