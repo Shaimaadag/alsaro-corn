@@ -48,6 +48,31 @@ async function initReviewsTable() {
 }
 initReviewsTable();
 
+// إنشاء جداول العملاء والطلبات تلقائياً إذا لم تكن موجودة
+async function initStoreTables() {
+    try {
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS customers (
+                id SERIAL PRIMARY KEY,
+                phone VARCHAR(50) UNIQUE NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+
+            CREATE TABLE IF NOT EXISTS orders (
+                id SERIAL PRIMARY KEY,
+                customer_id INTEGER REFERENCES customers(id),
+                items TEXT NOT NULL,
+                total_price NUMERIC(10, 2) NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+        `);
+        console.log("Store tables (customers & orders) ready.");
+    } catch (err) {
+        console.error("Error creating store tables:", err);
+    }
+}
+initStoreTables();
+
 // 🛒 API استقبال وتسجيل الطلب والزبون معاً
 app.post('/api/order', async (req, res) => {
     const { phone, items, total_price } = req.body;
