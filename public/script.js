@@ -12,43 +12,151 @@ function addToCart(name, price) {
     updateCartUI();
     
     // تنبيه بسيط عند الإضافة
-    alert(`تمت إضافة (${name}) إلى السلة بنجاح!`);
+    showToast(`تمت إضافة (${name}) إلى السلة بنجاح! 🌽`);
+}
+function showToast(message) {
+    const toastEl = document.getElementById('cartToast');
+    const toastMsgEl = document.getElementById('toast-message');
+    
+    if (toastEl && toastMsgEl) {
+        toastMsgEl.innerText = message;
+        const toast = new bootstrap.Toast(toastEl, { delay: 2500 });
+        toast.show();
+    }
 }
 
+// تحديث واجهة السلة وتفاصيل العناصر
 function updateCartUI() {
-    const listEl = document.getElementById('cart-items-list');
-    const badgeEl = document.getElementById('cart-badge');
-    const totalEl = document.getElementById('cart-total');
+    const cartList = document.getElementById('cart-items-list');
+    const cartBadge = document.getElementById('cart-badge');
+    const cartTotal = document.getElementById('cart-total');
 
-    if (!listEl || !badgeEl || !totalEl) return;
+    if (!cartList || !cartBadge || !cartTotal) return;
 
-    listEl.innerHTML = '';
-    let total = 0;
-    let totalCount = 0;
+    // تفريغ القائمة قبل إعادة الرسم
+    cartList.innerHTML = '';
+
+    let totalAmount = 0;
+    let totalItemsCount = 0;
 
     if (cart.length === 0) {
-        listEl.innerHTML = '<li class="list-group-item bg-transparent text-muted text-center py-4">السلة فارغة حالياً 🌽</li>';
+        cartList.innerHTML = `
+            <li class="list-group-item bg-transparent text-muted text-center py-4 border-0">
+                السلة فارغة حالياً 🌽
+            </li>`;
+    } else {
+        cart.forEach((item, index) => {
+            const itemTotal = item.price * item.qty;
+            totalAmount += itemTotal;
+            totalItemsCount += item.qty;
+
+            const li = document.createElement('li');
+            li.className = 'list-group-item bg-transparent text-light border-secondary d-flex align-items-center justify-content-between py-3 px-0';
+            
+            li.innerHTML = `
+                <div>
+                    <h6 class="mb-1 fw-bold text-warning">${item.name}</h6>
+                    <small class="text-muted">${item.price.toFixed(2)} JOD × ${item.qty} = <span class="text-light fw-bold">${itemTotal.toFixed(2)} JOD</span></small>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <button onclick="decreaseQty(${index})" class="btn btn-sm btn-outline-danger rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span class="fw-bold px-1 fs-6">${item.qty}</span>
+                    <button onclick="increaseQty(${index})" class="btn btn-sm btn-outline-warning rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            `;
+            cartList.appendChild(li);
+        });
     }
 
-    cart.forEach((item, index) => {
-        total += item.price * item.qty;
-        totalCount += item.qty;
-
-        const li = document.createElement('li');
-        li.className = 'list-group-item bg-transparent text-light d-flex justify-content-between align-items-center border-secondary';
-        li.innerHTML = `
-            <div>
-                <h6 class="mb-0 fw-bold">${item.name}</h6>
-                <small class="text-muted">${item.price} JOD × ${item.qty}</small>
-            </div>
-            <button onclick="removeItem(${index})" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
-        `;
-        listEl.appendChild(li);
-    });
-
-    badgeEl.innerText = totalCount;
-    totalEl.innerText = total.toFixed(2) + ' JOD';
+    // تحديث المجموع والعداد العائم
+    cartBadge.innerText = totalItemsCount;
+    cartTotal.innerText = `${totalAmount.toFixed(2)} JOD`;
 }
+
+// زيادة كمية صنف محدد
+function increaseQty(index) {
+    if (cart[index]) {
+        cart[index].qty += 1;
+        updateCartUI();
+    }
+}
+
+// إنقاص كمية صنف محدد أو حذفه إن وصلت الكمية لـ 0
+function decreaseQty(index) {
+    if (cart[index]) {
+        if (cart[index].qty > 1) {
+            cart[index].qty -= 1;
+        } else {
+            // حذف العنصر تماماً عند الوصول للصفر
+            cart.splice(index, 1);
+        }
+        updateCartUI();
+    }
+}
+
+async function refreshData() {
+    try {
+        // يمكنك إظهار مؤشر تحميل خفيف هنا إذا أردتِ
+        const response = await fetch('/api/reviews'); // أو الرابط الخاص بك على Render
+        if (!response.ok) throw new Error('Failed to fetch reviews');
+
+        const reviews = await response.json();
+        
+        // إعادة رسم قائمة التقييمات في الواجهة
+        renderReviews(reviews);
+        
+        // إشعار أنيق بتحديث البيانات (اختياري)
+        showToast('تم تحديث البيانات بنجاح! 🔄');
+    } catch (error) {
+        console.error('Error refreshing data:', error);
+    }
+}
+// دالة مساعدة لرسم الآراء ديناميكياً
+function renderReviews(reviews) {
+    const container = document.getElementById('reviews-container');
+    if (!container) return;
+
+    if (reviews.length === 0) {
+        container.innerHTML = `<p class="text-muted text-center font-arabic">لا توجد تقييمات حالياً.</p>`;
+        return;
+    }
+
+    container.innerHTML = reviews.map(rev => `
+        <div class="col-md-4">
+            <div class="card card-custom h-100 p-4 text-light text-start rounded-4 position-relative">
+                <div class="mb-3 text-warning fs-5">
+                    ${'★'.repeat(rev.rating)}${'☆'.repeat(5 - rev.rating)}
+                </div>
+                <p class="font-arabic mb-4" style="line-height: 1.8;">
+                    "${rev.comment}"
+                </p>
+                <div class="d-flex align-items-center mt-auto">
+                    <div class="rounded-circle bg-warning text-dark fw-bold d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                        ${rev.name ? rev.name.charAt(0) : 'ز'}
+                    </div>
+                    <div>
+                        <h6 class="mb-0 fw-bold text-warning">${rev.name}</h6>
+                        <small class="text-muted">زبون ذرة السرو</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+// إغلاق القائمة الجانبية تلقائياً عند النقر على أي رابط بداخله
+document.querySelectorAll('#menuDrawer .nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        const menuDrawerEl = document.getElementById('menuDrawer');
+        const bsOffcanvas = bootstrap.Offcanvas.getInstance(menuDrawerEl);
+        if (bsOffcanvas) {
+            bsOffcanvas.hide();
+        }
+    });
+});
 
 function removeItem(index) {
     cart.splice(index, 1);
@@ -57,13 +165,13 @@ function removeItem(index) {
 
 async function checkoutWhatsApp() {
     if (cart.length === 0) {
-        alert('السلة فارغة! يرجى اختيار بعض المنتجات أولاً.');
+        showToast('السلة فارغة! يرجى اختيار بعض المنتجات أولاً.');
         return;
     }
 
     const phone = document.getElementById('customer-phone').value;
     if (!phone) {
-        alert('يرجى إدخال رقم الهاتف.');
+        showToast('يرجى إدخال رقم الهاتف.');
         return;
     }
 
@@ -124,16 +232,16 @@ async function submitReview(event) {
         const data = await response.json();
 
         if (response.ok) {
-            alert('شكراً لك! تم إضافة رأيك بنجاح وسيظهر في الموقع.');
+            showToast('شكراً لك! تم إضافة رأيك بنجاح وسيظهر في الموقع.');
             document.getElementById('review-form').reset();
             // يمكنك هنا استدعاء دالة لتحديث قائمة الآراء وعرض الرأي الجديد فوراً
             loadReviews(); 
         } else {
-            alert('حدث خطأ أثناء إرسال الرأي، يحاول مجدداً.');
+            showToast('حدث خطأ أثناء إرسال الرأي، يحاول مجدداً.');
         }
     } catch (err) {
         console.error('Error submitting review:', err);
-        alert('تعذر الاتصال بالسيرفر.');
+        showToast('تعذر الاتصال بالسيرفر.');
     }
 }
 
